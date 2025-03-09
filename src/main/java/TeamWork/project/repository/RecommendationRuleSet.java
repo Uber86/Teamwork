@@ -1,11 +1,14 @@
 package TeamWork.project.repository;
 
 import TeamWork.project.model.Model;
+import TeamWork.project.service.Recomend;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface RecommendationRuleSet extends JdbcTemplate<Model, Long> {
+import java.util.Optional;
 
-    Long findById(long id);
+@Repository
+public interface RecommendationRuleSet   {
+
+    Optional<Model> findByClientId (Long clientId);
 }
