@@ -1,6 +1,9 @@
 package TeamWork.project.command;
 
-public class CommandSimpleLoan {
+import org.springframework.data.relational.core.mapping.Table;
+
+@Table(name = "TYPE")
+public class Debit {
 
     private final String textSinpleLoan = """
             Откройте мир выгодных кредитов с нами!

@@ -1,6 +1,9 @@
 package TeamWork.project.command;
 
-public class CommandTopSaving {
+import org.springframework.data.relational.core.mapping.Table;
+
+@Table(name = "TYPE")
+public class Saving {
 
     private final String textTopSaving = """
             Откройте свою собственную «Копилку» с нашим банком! «Копилка» — это 

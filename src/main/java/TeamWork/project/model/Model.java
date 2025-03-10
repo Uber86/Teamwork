@@ -1,37 +1,56 @@
 package TeamWork.project.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.util.Objects;
 
+@Table(name = "USERS")
 public class Model {
 
-    public int id;
+    @Id
+    private long id;
 
-    public String name;
+    @Column("USERNAME")
+    private String userName;
 
-    public String text;
+    @Column("FIRST_NAME")
+    private String firstName;
 
-    public int getId() {
+    @Column("LAST_NAME")
+    private String lastName;
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getText() {
-        return text;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @Override
@@ -39,20 +58,21 @@ public class Model {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Model model = (Model) o;
-        return id == model.id && Objects.equals(name, model.name) && Objects.equals(text, model.text);
+        return id == model.id && Objects.equals(userName, model.userName) && Objects.equals(firstName, model.firstName) && Objects.equals(lastName, model.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, text);
+        return Objects.hash(id, userName, firstName, lastName);
     }
 
     @Override
     public String toString() {
         return "Model{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", text='" + text + '\'' +
+                ", userName='" + userName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }

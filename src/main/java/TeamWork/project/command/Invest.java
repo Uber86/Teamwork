@@ -1,6 +1,9 @@
 package TeamWork.project.command;
 
-public class CommandInvest {
+import org.springframework.data.relational.core.mapping.Table;
+
+@Table(name = "TYPE")
+public class Invest {
 
     private final String textInvest = """
             Откройте свой путь к успеху с индивидуальным инвестиционным счетом
