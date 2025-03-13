@@ -16,9 +16,15 @@ public class RecommendationRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
     public Boolean isUserOf(UUID userId, ProductType productType){
-        return false;
+        String sql = "SELECT COUNT(*) FROM user_products WHERE user_id = ? AND product_type = ?";
+        Integer count = jdbcTemplate.queryForObject(sql, new Object[]{userId, productType.name()}, Integer.class);
+
+        return count != null && count > 0;
     }
     public int sum (UUID userId, ProductType productType, TransactionType transactionType){
-        return 0;
+        String sql = "SELECT SUM(amount) FROM transactions WHERE user_id = ? AND product_type = ? AND transaction_type = ?";
+        Integer totalAmount = jdbcTemplate.queryForObject(sql, new Object[]{userId, productType.name(), transactionType.name()}, Integer.class);
+
+        return totalAmount != null ? totalAmount : 0;
     }
 }
