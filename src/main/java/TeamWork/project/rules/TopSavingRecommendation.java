@@ -14,7 +14,8 @@ public class TopSavingRecommendation implements RecommendationRuleSet {
 
     public final RecommendationRepository repository;
 
-    public final static Recommendation RECOMMENDATION = new Recommendation(UUID.fromString
+    public final static Recommendation RECOMMENDATION = new Recommendation
+            ( "Top Saving",UUID.fromString
             ("59efc529-2fff-41af-baff-90ccd7402925"), """
             Откройте свою собственную «Копилку» с нашим банком! 
             «Копилка» — это уникальный банковский инструмент, который поможет 
@@ -33,7 +34,7 @@ public class TopSavingRecommendation implements RecommendationRuleSet {
             к ним возможен только через мобильное приложение или интернет-банкинг.
                         
             Начните использовать «Копилку» уже сегодня и станьте ближе к своим финансовым целям!
-            """, "Top Saving");
+            """);
 
     public TopSavingRecommendation(RecommendationRepository repository) {
         this.repository = repository;

@@ -17,8 +17,10 @@ public class SimpleLoanRecommendation implements RecommendationRuleSet{
 
     public final RecommendationRepository repository;
 
-    private static final Recommendation RECOMMENDATION = new Recommendation(UUID.fromString
-            ("ab138afb-f3ba-4a93-b74f-0fcee86d447f"), """
+    private static final Recommendation RECOMMENDATION = new Recommendation(
+            "Простой кредит", UUID.fromString
+            ("ab138afb-f3ba-4a93-b74f-0fcee86d447f"),
+            """
             Откройте мир выгодных кредитов с нами!
                         
             Ищете способ быстро и без лишних хлопот получить нужную 
@@ -39,7 +41,7 @@ public class SimpleLoanRecommendation implements RecommendationRuleSet{
                         
             Не упустите возможность воспользоваться выгодными условиями кредитования 
             от нашей компании!
-            """, "Простой кредит");
+            """);
 
     public SimpleLoanRecommendation(RecommendationRepository repository) {
         this.repository = repository;

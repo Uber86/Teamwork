@@ -7,10 +7,10 @@ public class Recommendation {
     private String name;
     private String text;
 
-    public Recommendation(UUID id, String text, String name) {
+    public Recommendation( String name, UUID id, String text) {
+        this.name = name;
         this.id = id;
         this.text = text;
-        this.name = name;
     }
 
     public UUID getId() {
