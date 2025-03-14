@@ -16,7 +16,7 @@ public class RecommendationRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
     public Boolean isUserOf(UUID userId, ProductType productType){
-        String sql = "SELECT COUNT(*) FROM product  WHERE id = ? AND type = ?";
+        String sql = "SELECT COUNT(*) FROM products  WHERE id = ? AND type = ?";
         Integer count = jdbcTemplate.queryForObject(sql, new Object[]{userId, productType.name()}, Integer.class);
         return count != null && count > 0;
     }
