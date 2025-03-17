@@ -18,6 +18,7 @@ public class RecommendationRepository {
 
     public Boolean isUserOf(UUID userId, ProductType productType) {
         //String sql = "SELECT COUNT(*) FROM products  WHERE id = ? AND type = ?";
+        //"LEFT JOIN products p ON p.id = t.product_id WHERE t.user_id =? AND p.type =?"
         String sql = "SELECT EXISTS(SELECT 1 FROM transactions WHERE user_id = ? AND type IN (SELECT id FROM products WHERE type = ?))";
         Integer count = jdbcTemplate.queryForObject(sql, new Object[]{userId, productType.name()}, Integer.class);
         return count != null && count > 0;
@@ -25,6 +26,7 @@ public class RecommendationRepository {
 
     public int sum(UUID userId, ProductType productType, TransactionType transactionType) {
         //String sql = "SELECT SUM(amount) FROM transactions WHERE user_id = ? AND product_id = ? AND type = ?";
+        //"LEFT JOIN products p ON p.id = t.product_id WHERE t.user_id =? AND p.type =? AND t.type=?"
         String sql = "SELECT SUM(amount) FROM transactions WHERE user_id = ? AND product_id = ? AND type IN (SELECT id FROM products WHERE type = ?  )";
         Integer totalAmount = jdbcTemplate.queryForObject(sql, new Object[]{userId, productType.name(), transactionType.name()}, Integer.class);
 
