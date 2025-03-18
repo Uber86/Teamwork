@@ -7,6 +7,7 @@ public class Recommendation {
     private String name;
     private String text;
 
+
     public Recommendation( String name, UUID id, String text) {
         this.name = name;
         this.id = id;

@@ -2,8 +2,17 @@
 
 -- changeset oss:1
 CREATE TABLE rule (
-    id SERIAL,
-    query VARCHAR(255) UNIQUE NOT NULL,
-    arguments JSON NOT NULL,
-    negate BOOLEAN
+    id SERIAL PRIMARY Key,
+    product_name varchar(255),
+    product_id UUID,
+    product_text text
+)
+
+-- changeset oss:2
+CREATE TABLE query (
+    id bigserial PRIMARY Key,
+    query varchar(255) UNIQUE NOT NULL ,
+    arguments ARRAY NOT NULL,
+    negate BOOLEAN,
+    rule_id bigint references rule(id)
 )

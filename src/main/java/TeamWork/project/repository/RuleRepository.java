@@ -1,6 +1,6 @@
 package TeamWork.project.repository;
 
-import TeamWork.project.dto.Rule;
+import TeamWork.project.model.Rule;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
