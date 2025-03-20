@@ -10,7 +10,7 @@ CREATE TABLE rule (
 
 -- changeset oss:2
 CREATE TABLE query (
-    id bigserial PRIMARY Key,
+    id BIGSERIAL PRIMARY Key,
     query varchar(255) UNIQUE NOT NULL ,
     arguments ARRAY NOT NULL,
     negate BOOLEAN,

@@ -3,6 +3,7 @@ package TeamWork.project.model;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -32,6 +33,7 @@ public class Rule {
         this.productText = productText;
         this.queries = queries;
     }
+
 
     public Rule() {
     }
@@ -74,5 +76,30 @@ public class Rule {
 
     public void setQueries(List<Query> queries) {
         this.queries = queries;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rule rule = (Rule) o;
+        return Objects.equals(id, rule.id) && Objects.equals(productName, rule.productName) && Objects.equals(productId, rule.productId) && Objects.equals(productText, rule.productText) && Objects.equals(queries, rule.queries);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, productName, productId, productText, queries);
+    }
+
+    @Override
+    public String toString() {
+        return "Rule{" +
+                "id=" + id +
+                ", productName='" + productName + '\'' +
+                ", productId=" + productId +
+                ", productText='" + productText + '\'' +
+                ", queries=" + queries +
+                '}';
     }
 }
