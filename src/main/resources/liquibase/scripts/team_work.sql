@@ -12,7 +12,7 @@ CREATE TABLE rule (
 CREATE TABLE query (
     id BIGSERIAL PRIMARY Key,
     query varchar(255) UNIQUE NOT NULL ,
-    arguments ARRAY NOT NULL,
+    arguments TEXT NOT NULL,
     negate BOOLEAN,
     rule_id bigint references rule(id)
 )

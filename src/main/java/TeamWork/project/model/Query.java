@@ -14,14 +14,14 @@ public class Query {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "query")
     private EnumType query;
 
     @Column(name = "arguments")
-    private List<String> arguments;
+    private String arguments;
 
     @Column(name = "negate")
     private boolean negate;
@@ -29,7 +29,8 @@ public class Query {
     @ManyToOne
     private Rule rule;
 
-    public Query(long id, EnumType query, List<String> arguments, boolean negate, Rule rule) {
+    public  Query() {}
+    public Query(Long id, EnumType query, String arguments, boolean negate, Rule rule) {
         this.id = id;
         this.query = query;
         this.arguments = arguments;
@@ -37,11 +38,11 @@ public class Query {
         this.rule = rule;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -53,11 +54,11 @@ public class Query {
         this.query = query;
     }
 
-    public List<String> getArguments() {
+    public String getArguments() {
         return arguments;
     }
 
-    public void setArguments(List<String> arguments) {
+    public void setArguments(String arguments) {
         this.arguments = arguments;
     }
 
