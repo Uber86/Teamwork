@@ -11,23 +11,6 @@ import java.util.List;
 @Service
 public class RuleService {
 
-    @Autowired
-    private RuleRepository repository;
 
-    public RuleService(RuleRepository repository) {
-        this.repository = repository;
-    }
-
-    public Rule creat (Rule rule){
-        return repository.save(rule);
-    }
-
-    public Rule delete(Rule rule) {
-        return repository.delete();
-    }
-
-    public List<Rule> findAll(){
-        return repository.findAll();
-    }
 
 }

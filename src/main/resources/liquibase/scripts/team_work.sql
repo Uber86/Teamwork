@@ -2,7 +2,7 @@
 
 -- changeset oss:1
 CREATE TABLE rule (
-    id SERIAL PRIMARY Key,
+    id BIGSERIAL PRIMARY Key,
     product_name varchar(255),
     product_id UUID,
     product_text text
@@ -14,5 +14,5 @@ CREATE TABLE query (
     query varchar(255) UNIQUE NOT NULL ,
     arguments TEXT NOT NULL,
     negate BOOLEAN,
-    rule_id bigint references rule(id)
+    rule_id BIGINT references rule(id)
 )

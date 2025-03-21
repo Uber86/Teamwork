@@ -1,6 +1,7 @@
 package TeamWork.project.repository;
 
 import TeamWork.project.dto.ProductType;
+import TeamWork.project.dto.Querys;
 import TeamWork.project.dto.TransactionType;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
