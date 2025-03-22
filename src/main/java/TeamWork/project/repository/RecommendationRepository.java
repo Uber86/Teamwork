@@ -79,8 +79,16 @@ public class RecommendationRepository {
     public boolean TransactionSumCompareDepositWithdraw(UUID userId, ProductType productType,
                                          ComparisonOperators operators
     ) {
-        String sql = "";
+        String sqlDeposit = "SELECT SUM(amount) " +
+                "FROM transactions t " +
+                "JOIN products p ON t.product_id = p.id " +
+                "WHERE t.user_id =? AND p.type =? AND t.type = DEPOSIT )";
 
+        String sqlWithdraw = "SELECT SUM(amount) " +
+                "FROM transactions t " +
+                "JOIN products p ON t.product_id = p.id " +
+                "WHERE t.user_id =? AND p.type =? AND t.type = DEPOSIT )";
+        Boolean a =
     }
 
 
