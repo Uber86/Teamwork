@@ -21,9 +21,12 @@ public class RecommendationController {
 
     @GetMapping("/recommendation/{userId}")
     public ResponseEntity<List<Recommendation>> getRecommendations(@PathVariable UUID userId) {
+
         List<Recommendation> recommendations = recommendationService.getRecommendation(userId);
         return ResponseEntity.ok(recommendations);
     }
+
+
 
 
 }
