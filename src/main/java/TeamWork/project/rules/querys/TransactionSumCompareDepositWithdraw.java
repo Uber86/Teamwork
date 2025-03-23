@@ -14,20 +14,20 @@ public class TransactionSumCompareDepositWithdraw extends AbstractQuery{
 
     private final ProductType productType;
 
-    private final ComparisonOperators compatype;
+    private final ComparisonOperators comparisonType;
 
 
-    protected TransactionSumCompareDepositWithdraw(boolean negate, List<String> args) {
+    protected TransactionSumCompareDepositWithdraw( List<String> args,  boolean negate) {
         super(negate);
         this.productType = ProductType.valueOf(args.get(0));
-        this.compatype = new ComparisonOperators(args.get(1));
+        this.comparisonType = new ComparisonOperators(args.get(1));
     }
 
     @Override
     protected boolean internalPerform(UUID userId, RecommendationRepository repository) {
         int sumD = repository.sum(userId, productType, TransactionType.DEPOSIT);
         int sumW = repository.sum(userId, productType, TransactionType.WITHDRAW);
-        return compatype.comparison(sumD, sumW);
+        return comparisonType.comparison(sumD, sumW);
     }
 
 

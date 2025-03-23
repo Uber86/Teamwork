@@ -1,19 +1,36 @@
 package TeamWork.project.rules.querys;
 
+import TeamWork.project.dto.ComparisonOperators;
+import TeamWork.project.dto.ProductType;
+import TeamWork.project.dto.TransactionType;
 import TeamWork.project.repository.RecommendationRepository;
 
 
+import java.util.List;
 import java.util.UUID;
 
 
 public class TransactionSumCompare extends AbstractQuery {
 
-    protected TransactionSumCompare(boolean negate) {
+    private final ProductType productType;
+
+    private final ComparisonOperators comparisonType;
+
+    private final int number;
+
+    protected TransactionSumCompare(List <String> args,  int number, boolean negate) {
         super(negate);
+        this.productType = ProductType.valueOf(args.get(0));
+        this.comparisonType = new ComparisonOperators(args.get(1));
+        if( number <= 0){
+            throw new IllegalArgumentException("Значение должно быть положительным");
+        }
+        this.number = number;
     }
 
     @Override
     protected boolean internalPerform(UUID userId, RecommendationRepository repository) {
-        return false;
+        int sumTran = repository.sum(userId, productType , TransactionType.DEPOSIT );
+        return comparisonType.comparison(sumTran, number);
     }
 }
