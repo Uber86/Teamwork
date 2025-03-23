@@ -1,19 +1,24 @@
 package TeamWork.project.dto;
 
-public enum ComparisonOperators {
-    MORE_THAN(">"),
-    LESS_THAN("<"),
-    EQUALS("=="),
-    GREATER_OR_EQUAL(">="),
-    LESS_OR_EQUAL("<=");
+import java.util.Map;
+import java.util.function.BiPredicate;
 
-    private final String s;
+public class ComparisonOperators {
+    private static final Map<String, BiPredicate<Integer, Integer>> MAP = Map.of(
+            ">",(w1,w2)->w1>w2,
+            "<",(w1,w2)->w1<w2,
+            "=",(w1,w2)->w1.equals(w2),
+            "<=",(w1,w2)->w1<=w2,
+            ">=",(w1,w2)->w1>=w2
+    );
 
-    ComparisonOperators(String s) {
-        this.s = s;
+    private final String operator;
+
+    public ComparisonOperators(String operator) {
+        this.operator = operator;
     }
 
-    public String getS() {
-        return s;
+    public boolean comparison(int a, int b) {
+        return MAP.get(operator).test(a, b);
     }
 }

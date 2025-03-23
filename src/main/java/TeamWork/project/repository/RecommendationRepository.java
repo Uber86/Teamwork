@@ -1,13 +1,10 @@
 package TeamWork.project.repository;
 
-import TeamWork.project.dto.ComparisonOperators;
 import TeamWork.project.dto.ProductType;
-import TeamWork.project.dto.Querys;
 import TeamWork.project.dto.TransactionType;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.yaml.snakeyaml.scanner.Constant;
 
 import java.util.UUID;
 
