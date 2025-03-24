@@ -39,8 +39,6 @@ public class DynamicRuleSet  implements RecommendationRuleSet {
             new UserOf(List<Querys>).internalPerform(userId);
         }
 
-
-
         return Optional.empty();
     }
 
