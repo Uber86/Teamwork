@@ -23,7 +23,8 @@ public class Rule {
     @Column(name = "product_text")
     private String productText;
 
-    @OneToMany(mappedBy = "rule", cascade = CascadeType.ALL,orphanRemoval = true,fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "rule", cascade = CascadeType.ALL,orphanRemoval = true,
+            fetch = FetchType.EAGER)
     private List<Query> queries;
 
     public Rule(Long id, String productName, UUID productId, String productText, List<Query> queries) {
