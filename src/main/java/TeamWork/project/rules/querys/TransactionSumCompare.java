@@ -16,7 +16,8 @@ public class TransactionSumCompare extends AbstractQuery {
 
     private final ComparisonOperators comparisonType;
 
-    private final int number;
+
+    private final int number ;
 
     protected TransactionSumCompare(List <String> args,  int number, boolean negate) {
         super(negate);
