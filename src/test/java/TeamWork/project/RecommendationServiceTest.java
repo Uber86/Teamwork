@@ -5,6 +5,8 @@ import TeamWork.project.rules.RecommendationRuleSet;
 import TeamWork.project.service.RecommendationService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.util.*;
@@ -14,10 +16,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 public class RecommendationServiceTest {
-    private RecommendationService recommendationService;
-    private RecommendationRuleSet ruleSet1;
-    private RecommendationRuleSet ruleSet2;
 
+    @Mock
+    private RecommendationRuleSet ruleSet1;
+    @Mock
+    private RecommendationRuleSet ruleSet2;
+    @InjectMocks
+    private RecommendationService recommendationService;
     @BeforeEach
     public void setUp() {
         ruleSet1 = Mockito.mock(RecommendationRuleSet.class);
