@@ -36,8 +36,8 @@ public class DynamicRuleSet  implements RecommendationRuleSet {
     @Override
     public Optional<Recommendation> perform(UUID userId) {
         List<Rule> rule = repository.findAll();
-        rule.stream().map(it -> it.getId());
-        Query query = new Query(1L, USER_OF, List.of("DEBIT"), false, );
+        Rule rule1 = rule.get(0);
+        Query query = new Query(1L, USER_OF, List.of("DEBIT"), false, rule1 );
         query.
         return Optional.empty();
     }
