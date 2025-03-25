@@ -1,7 +1,6 @@
 package TeamWork.project.model;
 
 import TeamWork.project.dto.Querys;
-import TeamWork.project.repository.RecommendationRepository;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -18,10 +17,11 @@ public class Query {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "query")
-    private EnumType query;
+    private Querys query;
+
 
     @Column(name = "arguments")
-    private String arguments;
+    private List<String> arguments;
 
     @Column(name = "negate")
     private boolean negate;
@@ -30,7 +30,7 @@ public class Query {
     private Rule rule;
 
     public  Query() {}
-    public Query(Long id, EnumType query, String arguments, boolean negate, Rule rule) {
+    public Query(Long id, Querys query, List<String> arguments, boolean negate, Rule rule) {
         this.id = id;
         this.query = query;
         this.arguments = arguments;
@@ -46,19 +46,19 @@ public class Query {
         this.id = id;
     }
 
-    public EnumType getQuery() {
+    public Querys getQuery() {
         return query;
     }
 
-    public void setQuery(EnumType query) {
+    public void setQuery(Querys query) {
         this.query = query;
     }
 
-    public String getArguments() {
+    public List<String> getArguments() {
         return arguments;
     }
 
-    public void setArguments(String arguments) {
+    public void setArguments(List<String> arguments) {
         this.arguments = arguments;
     }
 
