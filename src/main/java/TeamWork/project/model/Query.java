@@ -19,7 +19,6 @@ public class Query {
     @Column(name = "query")
     private Querys query;
 
-
     @Column(name = "arguments")
     private List<String> arguments;
 
