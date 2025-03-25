@@ -38,9 +38,23 @@ public class DynamicRuleSet  implements RecommendationRuleSet {
         List<Rule> rule = repository.findAll();
         Rule rule1 = rule.get(0);
         Query query = new Query(1L, USER_OF, List.of("DEBIT"), false, rule1 );
-        query.
+        Boolean bool = new AbstractQuery(true) {
+            @Override
+            protected boolean internalPerform(UUID userId, RecommendationRepository repository) {
+                return true;
+            }
+        }.perform(userId, new RecommendationRepository(DEBIT));
         return Optional.empty();
     }
+//   Boolean bool = new AbstractQuery(true).perform(userId, DEBIT);
+//
+//    Object obj = new AbstractQuery(true) {
+//            @Override
+//            protected boolean internalPerform(UUID userId, RecommendationRepository repository) {
+//                return false;
+//            }
+//        }.perform(userId, DEBIT);
+
 //    List<Rule> rule = repository.findAll();
 //    boolean query = new Query(1L, Querys.USER_OF, List.of("DEBIT"), true, new Rule(1L,
 //            "Простой кредит",
