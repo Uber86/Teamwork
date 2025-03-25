@@ -20,7 +20,7 @@ public class Query {
     private Querys query;
 
     @Column(name = "arguments")
-    private List<String> arguments;
+    private String arguments;
 
     @Column(name = "negate")
     private boolean negate;
@@ -29,7 +29,7 @@ public class Query {
     private Rule rule;
 
     public  Query() {}
-    public Query(Long id, Querys query, List<String> arguments, boolean negate, Rule rule) {
+    public Query(Long id, Querys query, String arguments, boolean negate, Rule rule) {
         this.id = id;
         this.query = query;
         this.arguments = arguments;
@@ -53,11 +53,11 @@ public class Query {
         this.query = query;
     }
 
-    public List<String> getArguments() {
+    public String getArguments() {
         return arguments;
     }
 
-    public void setArguments(List<String> arguments) {
+    public void setArguments(String arguments) {
         this.arguments = arguments;
     }
 

@@ -1,51 +1,48 @@
 package TeamWork.project.rules;
 
-import TeamWork.project.dto.ProductType;
-import TeamWork.project.dto.Querys;
 import TeamWork.project.dto.Recommendation;
 import TeamWork.project.model.Query;
 import TeamWork.project.model.Rule;
 import TeamWork.project.repository.RecommendationRepository;
 import TeamWork.project.repository.RuleRepository;
-import TeamWork.project.rules.querys.*;
-import jakarta.persistence.EnumType;
-import org.hibernate.mapping.UserDefinedObjectType;
+import TeamWork.project.rules.querys.QueryFactory;
 import org.springframework.stereotype.Component;
 
-
-import java.lang.constant.ClassDesc;
-import java.util.*;
-import java.util.stream.Collectors;
-
-import static TeamWork.project.dto.ProductType.DEBIT;
-import static TeamWork.project.dto.Querys.*;
-
+import java.util.Optional;
+import java.util.UUID;
 
 @Component
-public class DynamicRuleSet  implements RecommendationRuleSet {
-
+public class DynamicRuleSet implements RecommendationRuleSet {
 
     private final RuleRepository repository;
+    private final RecommendationRepository recommendationRepository;
 
-
-
-    public DynamicRuleSet(RuleRepository repository) {
+    public DynamicRuleSet(RuleRepository repository, RecommendationRepository recommendationRepository) {
         this.repository = repository;
+        this.recommendationRepository = recommendationRepository;
     }
 
     @Override
     public Optional<Recommendation> perform(UUID userId) {
-        List<Rule> rule = repository.findAll();
-        Rule rule1 = rule.get(0);
-        Query query = new Query(1L, USER_OF, List.of("DEBIT"), false, rule1 );
-        Boolean bool = new AbstractQuery(true) {
-            @Override
-            protected boolean internalPerform(UUID userId, RecommendationRepository repository) {
-                return true;
-            }
-        }.perform(userId, new RecommendationRepository(DEBIT));
-        return Optional.empty();
+        return repository.findAll().stream().map(rule -> processRule(rule,userId));
     }
+
+    private Optional<Recommendation> processRule(Rule rule, UUID userId) {
+        Boolean reduce = rule.getQueries().stream()
+                .map(query -> QueryFactory.from(query.getQuery(),
+                        query.getArguments(),
+                        query.isNegate()))
+                .map(abstractQuery -> abstractQuery
+                        .perform(userId, recommendationRepository))
+                .reduce(true, (a, b) -> a && b);
+        if (reduce){
+            return Optional.of(new Recommendation(rule.getProductName(),rule.getProductId(),rule.getProductText()));
+        }else {
+            return Optional.empty();
+        }
+    }
+
+}
 //   Boolean bool = new AbstractQuery(true).perform(userId, DEBIT);
 //
 //    Object obj = new AbstractQuery(true) {
