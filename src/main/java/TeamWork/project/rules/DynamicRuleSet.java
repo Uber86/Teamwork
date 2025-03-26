@@ -5,6 +5,7 @@ import TeamWork.project.model.Query;
 import TeamWork.project.model.Rule;
 import TeamWork.project.repository.RecommendationRepository;
 import TeamWork.project.repository.RuleRepository;
+import TeamWork.project.rules.querys.AbstractQuery;
 import TeamWork.project.rules.querys.QueryFactory;
 import org.springframework.stereotype.Component;
 
@@ -27,8 +28,9 @@ public class DynamicRuleSet implements RecommendationRuleSet {
 
     @Override
     public Optional<Recommendation> perform(UUID userId) {
-        return repository.findAll().stream().map(rule -> processRule(rule,userId))
-                .;
+        return repository.findAll().stream().map(rule -> processRule(rule, userId))
+                .collect(toCollection(Optional.of()));
+
     }
 
     private Optional<Recommendation> processRule(Rule rule, UUID userId) {
