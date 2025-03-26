@@ -12,6 +12,8 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toCollection;
+
 @Component
 public class DynamicRuleSet implements RecommendationRuleSet {
 
@@ -25,9 +27,8 @@ public class DynamicRuleSet implements RecommendationRuleSet {
 
     @Override
     public Optional<Recommendation> perform(UUID userId) {
-        return repository.findAll().stream()
-                .map(rule -> processRule(rule,userId))
-                .collect(Collectors.toCollection(Recommendation));
+        return repository.findAll().stream().map(rule -> processRule(rule,userId))
+                .;
     }
 
     private Optional<Recommendation> processRule(Rule rule, UUID userId) {

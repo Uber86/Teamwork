@@ -17,16 +17,16 @@ public class TransactionSumCompare extends AbstractQuery {
     private final ComparisonOperators comparisonType;
 
 
-    private final int number ;
+    private Integer number ;
 
-    protected TransactionSumCompare(List <String> args,  int number, boolean negate) {
+    protected TransactionSumCompare(List <String> args,  boolean negate) {
         super(negate);
         this.productType = ProductType.valueOf(args.get(0));
         this.comparisonType = new ComparisonOperators(args.get(1));
         if( number <= 0){
             throw new IllegalArgumentException("Значение должно быть положительным");
         }
-        this.number = number;
+        this.number = Integer.parseInt(args.get(2));
     }
 
     @Override
