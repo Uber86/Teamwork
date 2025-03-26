@@ -13,13 +13,13 @@ public class QueryFactory {
     public static AbstractQuery from(Querys query, String arguments, boolean negate) {
         switch (query){
             case USER_OF:
-                return new  UserOfQuery(arguments,negate, ruleRepository);
+                return new UserOf();
             case ACTIVE_USER_OF:
-                return new ActiveUserOfQuery(arguments, negate, ruleRepository);
+                return new ActiveUserOf();
             case TRANSACTION_SUM_COMPARE:
-                return new TransactionSumCompareQuery(arguments, negate, ruleRepository);
+                return new TransactionSumCompare();
             case TRANSACTION_SUM_COMPARE_DEPOSIT_WITHDRAW:
-                return new TransactionSumCompareDepositWithdrawQuery(arguments, negate, ruleRepository);
+                return new TransactionSumCompareDepositWithdraw();
         }
         return null;
     }
