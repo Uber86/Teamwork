@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Component
 public class DynamicRuleSet implements RecommendationRuleSet {
@@ -24,7 +25,9 @@ public class DynamicRuleSet implements RecommendationRuleSet {
 
     @Override
     public Optional<Recommendation> perform(UUID userId) {
-        return repository.findAll().stream().map(rule -> processRule(rule,userId));
+        return repository.findAll().stream()
+                .map(rule -> processRule(rule,userId))
+                .collect(Collectors.toCollection(Recommendation));
     }
 
     private Optional<Recommendation> processRule(Rule rule, UUID userId) {
@@ -36,11 +39,14 @@ public class DynamicRuleSet implements RecommendationRuleSet {
                         .perform(userId, recommendationRepository))
                 .reduce(true, (a, b) -> a && b);
         if (reduce){
-            return Optional.of(new Recommendation(rule.getProductName(),rule.getProductId(),rule.getProductText()));
+            return Optional.of(new Recommendation(rule.getProductName()
+                    ,rule.getProductId(),rule.getProductText()));
         }else {
             return Optional.empty();
         }
     }
+
+
 
 }
 //   Boolean bool = new AbstractQuery(true).perform(userId, DEBIT);
