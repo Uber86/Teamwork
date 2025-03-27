@@ -12,6 +12,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Component
 public class DynamicRuleSet implements RecommendationRuleSet {
@@ -25,11 +26,10 @@ public class DynamicRuleSet implements RecommendationRuleSet {
     }
 
     @Override
-    public List<Optional<Recommendation>> perform(UUID userId) {
+    public Optional<Recommendation> perform(UUID userId) {
         return repository.findAll().stream()
-                .map(rule -> processRule(rule, userId))
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
+                .flatMap(rule -> processRule(rule, userId).stream())
+                .findFirst();
     }
 
 
