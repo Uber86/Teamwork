@@ -21,9 +21,12 @@ public class QueryFactory {
             case TRANSACTION_SUM_COMPARE:
                 return new TransactionSumCompare(Collections.singletonList(arguments), negate);
             case TRANSACTION_SUM_COMPARE_DEPOSIT_WITHDRAW:
-                return new TransactionSumCompareDepositWithdraw(Collections.singletonList(arguments), negate);
+                return new TransactionSumCompareDepositWithdraw(Collections
+                        .singletonList(arguments), negate);
+            default:
+                return null;
         }
-        return null;
+
     }
 
 

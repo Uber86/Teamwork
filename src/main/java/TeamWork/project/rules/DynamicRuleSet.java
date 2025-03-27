@@ -1,5 +1,6 @@
 package TeamWork.project.rules;
 
+import TeamWork.project.dto.Querys;
 import TeamWork.project.dto.Recommendation;
 import TeamWork.project.model.Query;
 import TeamWork.project.model.Rule;
@@ -9,11 +10,14 @@ import TeamWork.project.rules.querys.AbstractQuery;
 import TeamWork.project.rules.querys.QueryFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import static TeamWork.project.dto.Querys.*;
 import static java.util.stream.Collectors.toCollection;
+import static java.util.stream.Collectors.toList;
 
 @Component
 public class DynamicRuleSet implements RecommendationRuleSet {
@@ -28,11 +32,26 @@ public class DynamicRuleSet implements RecommendationRuleSet {
 
     @Override
     public Optional<Recommendation> perform(UUID userId) {
-        return repository.findAll().stream().map(rule -> processRule(rule, userId))
-                .collect(toCollection(Optional.of()));
-
-    }
-
+        return repository.findAll().stream()
+                .map(rule -> processRule(rule, userId))
+                .filter(rule -> {
+                    if (rule.equals("Простой кредит")) {
+                        Optional.of(List.of(USER_OF,
+                                TRANSACTION_SUM_COMPARE_DEPOSIT_WITHDRAW,
+                                TRANSACTION_SUM_COMPARE));
+                    } else if (rule.equals("Invest 500")) {
+                        Optional.of(List.of(ACTIVE_USER_OF,
+                                TRANSACTION_SUM_COMPARE_DEPOSIT_WITHDRAW,
+                                TRANSACTION_SUM_COMPARE));
+                    } else if (rule.equals("Top Saving")) {
+                        Optional.of(List.of(USER_OF,
+                                ACTIVE_USER_OF,
+                                TRANSACTION_SUM_COMPARE_DEPOSIT_WITHDRAW,
+                                TRANSACTION_SUM_COMPARE));
+                    }
+                    return false;
+                }).collect(Optional.of());
+    };
     private Optional<Recommendation> processRule(Rule rule, UUID userId) {
         Boolean reduce = rule.getQueries().stream()
                 .map(query -> QueryFactory.from(query.getQuery(),
