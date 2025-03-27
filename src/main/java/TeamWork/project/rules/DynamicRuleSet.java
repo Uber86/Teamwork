@@ -1,23 +1,17 @@
 package TeamWork.project.rules;
 
-import TeamWork.project.dto.Querys;
 import TeamWork.project.dto.Recommendation;
-import TeamWork.project.model.Query;
 import TeamWork.project.model.Rule;
 import TeamWork.project.repository.RecommendationRepository;
 import TeamWork.project.repository.RuleRepository;
-import TeamWork.project.rules.querys.AbstractQuery;
 import TeamWork.project.rules.querys.QueryFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toCollection;
-import static java.util.stream.Collectors.toList;
 
 @Component
 public class DynamicRuleSet implements RecommendationRuleSet {
@@ -31,12 +25,14 @@ public class DynamicRuleSet implements RecommendationRuleSet {
     }
 
     @Override
-    public Optional<Recommendation> perform(UUID userId) {
+    public List<Optional<Recommendation>> perform(UUID userId) {
         return repository.findAll().stream()
                 .map(rule -> processRule(rule, userId))
-                .collect(new Recommendation(rule.)));
-
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
+
+
     private Optional<Recommendation> processRule(Rule rule, UUID userId) {
         Boolean reduce = rule.getQueries().stream()
                 .map(query -> QueryFactory.from(query.getQuery(),
@@ -129,4 +125,4 @@ public class DynamicRuleSet implements RecommendationRuleSet {
 //        }
 //    }.perform(userId, (RecommendationRepository) list);
 
-}
+
