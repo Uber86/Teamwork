@@ -2,17 +2,17 @@ package TeamWork.project.model;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
-import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
 public class CacheConfig {
 
     @Bean
-    public Cache<Object, Object> userOfCache() {
+    public Cache<UUID, Boolean> userProductCache() {
         return Caffeine.newBuilder()
                 .expireAfterWrite(10, TimeUnit.MINUTES)
                 .maximumSize(1000)
@@ -20,7 +20,7 @@ public class CacheConfig {
     }
 
     @Bean
-    public Cache<Object, Object> ActiveUserOfCache() {
+    public Cache<UUID, Integer> transactionSumCache() {
         return Caffeine.newBuilder()
                 .expireAfterWrite(10, TimeUnit.MINUTES)
                 .maximumSize(1000)
@@ -28,19 +28,12 @@ public class CacheConfig {
     }
 
     @Bean
-    public Cache<Object, Object> transactionSumCompareCache() {
+    public Cache<UUID, Integer> transactionCountCache() {
         return Caffeine.newBuilder()
                 .expireAfterWrite(10, TimeUnit.MINUTES)
                 .maximumSize(1000)
                 .build();
     }
 
-    @Bean
-    public Cache<Object, Object> transactionSumCompareDepositWithdrawCache() {
-        return Caffeine.newBuilder()
-                .expireAfterWrite(10, TimeUnit.MINUTES)
-                .maximumSize(1000)
-                .build();
-    }
 
 }
