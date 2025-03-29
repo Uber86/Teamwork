@@ -32,6 +32,9 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
     public int process(List<Update> updates) {
         updates.forEach(update -> {
             logger.info("Processing update: {}", update);
+            if (update.message().text().equals("/start")) {
+                System.out.println("/start founded");
+            }
             commands.stream()
                     .filter(it->it.support(update))
                     .forEach(it->{
