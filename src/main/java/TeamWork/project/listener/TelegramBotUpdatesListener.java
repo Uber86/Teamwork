@@ -42,6 +42,8 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
                     });
             if (update.message().text().equals("/start")) {
                 System.out.println("/start founded");
+            } else if (update.message().text().startsWith("/recommend")) {
+                System.out.println("/recommend founded");
             }
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;

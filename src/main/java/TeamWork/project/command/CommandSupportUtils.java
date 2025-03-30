@@ -1,5 +1,6 @@
 package TeamWork.project.command;
 
+import com.pengrad.telegrambot.model.Chat;
 import com.pengrad.telegrambot.model.Message;
 import com.pengrad.telegrambot.model.Update;
 
@@ -20,8 +21,8 @@ public class CommandSupportUtils {
     public static Long chatId(Update update) {
         return Optional.of(update)
                 .map(Update::message)
-                .map(it -> it.chat())
-                .map(it -> it.id())
+                .map(Message::chat)
+                .map(Chat::id)
                 .orElse(-1L);
     }
 }
