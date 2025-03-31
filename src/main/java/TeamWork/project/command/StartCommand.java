@@ -20,7 +20,9 @@ public class StartCommand implements TelegramCommand{
     @Override
     public SendMessage handle(Update update) {
         String notificationTask = update.message().chat().username();
-        String text = "Здравствуйте, " + update.message().from().username() + " !";
+        String text = "Здравствуйте, " + update.message().from().username() + " !\n" +
+                "Для получения рекомендации напишите /recommend username"+"\n" +
+                "Где username - это username в банке.";
         String format = String.format(text, notificationTask);
         return new SendMessage(chatId(update), format);
     }

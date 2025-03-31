@@ -71,13 +71,11 @@ public class RecommendationRepository {
         }) > 5;
     }
 
-    public UUID getUserId(String user){
-        String sql = "SELECT u.id " +
-                "FROM users u " +
-                "LEFT JOIN TRANSACTIONS t ON u.id = t.user_id " +
-                "LEFT JOIN PRODUCTS p ON p.id = t.product_id " +
-                "WHERE u.username = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{user}, UUID.class);
+    public UUID getUserId(String userName){
+        String sql = "SELECT COUNT(id) " +
+                "FROM USERS " +
+                "WHEREusername =?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{userName}, UUID.class);
     }
 
     /*

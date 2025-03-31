@@ -1,6 +1,12 @@
 package TeamWork.project.command;
 
+import TeamWork.project.dto.Recommendation;
+import TeamWork.project.model.Rule;
 import TeamWork.project.repository.RecommendationRepository;
+import TeamWork.project.repository.RuleRepository;
+import TeamWork.project.rules.DynamicRuleSet;
+import TeamWork.project.rules.RecommendationRuleSet;
+import TeamWork.project.rules.querys.QueryFactory;
 import TeamWork.project.service.RecommendationService;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
@@ -15,16 +21,17 @@ import static TeamWork.project.utils.CommandSupportUtils.chatId;
 import static TeamWork.project.utils.CommandSupportUtils.text;
 
 @Component
-public class RecommendCommand implements TelegramCommand{
+public class RecommendCommand extends DynamicRuleSet implements TelegramCommand{
 
-    private final RecommendationService recommendationService;
     private final Pattern pattern = Pattern.compile("^/recommend\\s+([\\w.]+)$");
+
     private final RecommendationRepository recommendationRepository;
 
-    public RecommendCommand(RecommendationService recommendationService, RecommendationRepository recommendationRepository){
-        this.recommendationService = recommendationService;
+    public RecommendCommand(RuleRepository repository, RecommendationRepository recommendationRepository) {
+        super(repository, recommendationRepository);
         this.recommendationRepository = recommendationRepository;
     }
+
 
     @Override
     public boolean support(Update update) {
@@ -46,19 +53,23 @@ public class RecommendCommand implements TelegramCommand{
     public SendMessage handle(Update update){
         Matcher matcher = pattern.matcher(update.message().text());
         if (!matcher.matches()) {
-            return new SendMessage(chatId(update), "Неверный формат команды. Используйте: /recommend <username>");
+            return new SendMessage(chatId(update),
+                    "Неверный формат команды. Используйте: /recommend <username>");
         }
         String user = matcher.group(1);
         UUID userId = recommendationRepository.getUserId(user);
         if (userId == null) {
             return new SendMessage(chatId(update), "Пользователь не найден.");
         }
+
         String notificationTask = update.message().chat().username();
         String text = "Здравствуйте, " + user + " !\n" +
-                "Ваши рекомендации: " + recommendationService.getRecommendation(userId);
+                "Ваши рекомендации: "+ perform(userId);
         String format = String.format(text, notificationTask);
-        return new SendMessage(chatId(update), format);
+        return new SendMessage(chatId(update), format );
     }
+
+
 //    private UUID getUserId(String user){
 //        String sql = "Select ID " +
 //                "From USERS " +

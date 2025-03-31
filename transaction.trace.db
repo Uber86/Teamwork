@@ -1,3 +1,48 @@
 2025-03-28 12:59:32.475887+03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRANSACTIONS" not found (this database is empty); SQL statement:
 SELECT EXISTS(SELECT 1 FROM transactions WHERE user_id = ?  type IN (SELECT id FROM products WHERE type = ?)) [42104-232]
+2025-03-31 08:30:29.583302+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT u.id FROM users u LEFT JOIN TRANSACTIONS t ON u.id = t.user_id LEFT JOIN PRODUCTS p ON p.id = t.product_id WHERE u.username = ? [42104-232]
+2025-03-31 08:36:23.845120+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT id FROM users u LEFT JOIN TRANSACTIONS t ON u.id = t.user_id Right JOIN PRODUCTS p ON p.id = t.product_id WHERE u.username = ? [42104-232]
+2025-03-31 08:51:02.860120+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT id FROM users u WHERE id = ? [42104-232]
+2025-03-31 08:51:37.393676+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT id FROM users u WHERE id = ? [42104-232]
+2025-03-31 09:06:04.470319+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT id FROM [*]table users  WHERE username =?"; ожидалось "identifier"
+Syntax error in SQL statement "SELECT id FROM [*]table users  WHERE username =?"; expected "identifier"; SQL statement:
+SELECT id FROM table users  WHERE username =? [42001-232]
+2025-03-31 09:07:07.296336+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT id FROM [*]table users  WHERE id =?"; ожидалось "identifier"
+Syntax error in SQL statement "SELECT id FROM [*]table users  WHERE id =?"; expected "identifier"; SQL statement:
+SELECT id FROM table users  WHERE id =? [42001-232]
+2025-03-31 09:08:24.411603+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT id FROM [*]table users  WHERE username = id =?"; ожидалось "identifier"
+Syntax error in SQL statement "SELECT id FROM [*]table users  WHERE username = id =?"; expected "identifier"; SQL statement:
+SELECT id FROM table users  WHERE username = id =? [42001-232]
+2025-03-31 09:14:48.871967+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS  WHERE u.id = u.username =? [42104-232]
+2025-03-31 09:18:20.589748+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS  ORDER BY username =? [42104-232]
+2025-03-31 09:19:39.775177+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS  WHERE username =? [42104-232]
+2025-03-31 09:20:38.497482+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS  WHERE username = u.id [42104-232]
+2025-03-31 09:23:30.343557+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS  WHERE id = username =? [42104-232]
+2025-03-31 09:25:15.459976+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT COUNT(id) FROM USERS  WHERE id = username =? [42104-232]
+2025-03-31 09:37:32.868328+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT COUNT(id) FROM USERS WHEREusername =? [42104-232]
