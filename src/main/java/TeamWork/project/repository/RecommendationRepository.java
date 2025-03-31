@@ -74,7 +74,7 @@ public class RecommendationRepository {
     public UUID getUserId(String userName){
         String sql = "SELECT COUNT(id) " +
                 "FROM USERS " +
-                "WHEREusername =?";
+                "WHERE username =?";
         return jdbcTemplate.queryForObject(sql, new Object[]{userName}, UUID.class);
     }
 
