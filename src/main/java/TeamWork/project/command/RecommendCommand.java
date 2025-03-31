@@ -4,18 +4,15 @@ import TeamWork.project.repository.RecommendationRepository;
 import TeamWork.project.service.RecommendationService;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static TeamWork.project.command.CommandSupportUtils.chatId;
-import static TeamWork.project.command.CommandSupportUtils.text;
+import static TeamWork.project.utils.CommandSupportUtils.chatId;
+import static TeamWork.project.utils.CommandSupportUtils.text;
 
 @Component
 public class RecommendCommand implements TelegramCommand{

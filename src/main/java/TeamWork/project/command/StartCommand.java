@@ -1,10 +1,11 @@
 package TeamWork.project.command;
 
+import TeamWork.project.utils.CommandSupportUtils;
 import com.pengrad.telegrambot.model.Update;
 import com.pengrad.telegrambot.request.SendMessage;
 import org.springframework.stereotype.Component;
 
-import static TeamWork.project.command.CommandSupportUtils.chatId;
+import static TeamWork.project.utils.CommandSupportUtils.chatId;
 
 @Component
 public class StartCommand implements TelegramCommand{

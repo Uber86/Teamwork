@@ -1,4 +1,4 @@
-package TeamWork.project.command;
+package TeamWork.project.utils;
 
 import com.pengrad.telegrambot.model.Chat;
 import com.pengrad.telegrambot.model.Message;
