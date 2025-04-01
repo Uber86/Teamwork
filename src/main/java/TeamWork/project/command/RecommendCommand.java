@@ -61,9 +61,10 @@ public class RecommendCommand extends DynamicRuleSet implements TelegramCommand{
         if (userId == null) {
             return new SendMessage(chatId(update), "Пользователь не найден.");
         }
-
         String notificationTask = update.message().chat().username();
-        String text = "Здравствуйте, " + user + " !\n" +
+        String text = "Здравствуйте, " +
+                recommendationRepository.getUserFirstAndLastName(userId) +
+                " !\n" +
                 "Ваши рекомендации: "+ perform(userId);
         String format = String.format(text, notificationTask);
         return new SendMessage(chatId(update), format );

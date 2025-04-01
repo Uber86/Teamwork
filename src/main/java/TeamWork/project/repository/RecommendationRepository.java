@@ -72,10 +72,13 @@ public class RecommendationRepository {
     }
 
     public UUID getUserId(String userName){
-        String sql = "SELECT COUNT(id) " +
-                "FROM USERS " +
-                "WHERE username =?";
+        String sql = "SELECT ID FROM USERS WHERE USERNAME =?";
         return jdbcTemplate.queryForObject(sql, new Object[]{userName}, UUID.class);
+    }
+
+    public String getUserFirstAndLastName(UUID userId) {
+        String sql = "Select FIRST_NAME, LAST_NAME FROM USERS WHERE ID =?";
+        return jdbcTemplate.queryForObject(sql, new Object[]{userId}, String.class);
     }
 
     /*
