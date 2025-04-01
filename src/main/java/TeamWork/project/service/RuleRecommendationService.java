@@ -10,9 +10,9 @@ import java.util.UUID;
 
 @Service
 public class RuleRecommendationService {
-    static int countAdd = 0;
-    static int countDeleteRule = 0;
-    static int countGetAllRules = 0;
+    private static int countAdd = 0;
+    private static int countDeleteRule = 0;
+    private static int countGetAllRules = 0;
 
     @Autowired
     private RuleRepository ruleRepository;
