@@ -16,3 +16,11 @@ CREATE TABLE query (
     negate BOOLEAN,
     rule_id BIGINT references rule(id)
 )
+
+-- changeset oss:3
+CREATE TABLE rule_stats (
+    id BIGINT PRIMARY Key,
+    rule_id BIGINT references rule(product_id),
+    count BIGINT DEFAULT 0
+)
+

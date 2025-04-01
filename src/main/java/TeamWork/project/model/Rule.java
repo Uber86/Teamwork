@@ -27,6 +27,9 @@ public class Rule {
             fetch = FetchType.EAGER)
     private List<Query> queries;
 
+    @OneToMany
+    private StatisticRule statisticRule;
+
     public Rule(Long id, String productName, UUID productId, String productText, List<Query> queries) {
         this.id = id;
         this.productName = productName;

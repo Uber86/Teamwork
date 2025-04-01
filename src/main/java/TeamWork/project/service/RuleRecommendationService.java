@@ -10,16 +10,12 @@ import java.util.UUID;
 
 @Service
 public class RuleRecommendationService {
-    private static int countAdd = 0;
-    private static int countDeleteRule = 0;
-    private static int countGetAllRules = 0;
 
     @Autowired
     private RuleRepository ruleRepository;
 
     public Rule addRule(Rule rule) {
         Rule save = ruleRepository.save(rule);
-        countAdd++;
         return save;
     }
 
@@ -27,13 +23,11 @@ public class RuleRecommendationService {
         Rule rule = ruleRepository.findByProductId(productId);
         if (rule != null) {
             ruleRepository.delete(rule);
-            countDeleteRule++;
         }
     }
 
     public List<Rule> getAllRules() {
         List<Rule> all = ruleRepository.findAll();
-        countGetAllRules++;
         return all;
     }
 }

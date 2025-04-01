@@ -35,7 +35,4 @@ public class RuleRecommendationController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping ("/stats")
-    public ResponseEntity get
-
 }
