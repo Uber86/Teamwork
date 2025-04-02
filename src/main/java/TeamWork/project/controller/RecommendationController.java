@@ -2,6 +2,8 @@ package TeamWork.project.controller;
 
 import TeamWork.project.dto.Recommendation;
 import TeamWork.project.service.RecommendationService;
+import TeamWork.project.service.StatisticRuleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,8 @@ public class RecommendationController {
 
     private final RecommendationService recommendationService;
 
+
+
     public RecommendationController(RecommendationService recommendationService) {
         this.recommendationService = recommendationService;
     }
@@ -25,6 +29,8 @@ public class RecommendationController {
         List<Recommendation> recommendations = recommendationService.getRecommendation(userId);
         return ResponseEntity.ok(recommendations);
     }
+
+
 
 
 

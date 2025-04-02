@@ -1,7 +1,9 @@
 package TeamWork.project.controller;
 
 import TeamWork.project.model.Rule;
+import TeamWork.project.model.StatisticRule;
 import TeamWork.project.service.RuleRecommendationService;
+import TeamWork.project.service.StatisticRuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,10 @@ public class RuleRecommendationController {
 
     @Autowired
     private RuleRecommendationService recommendationService;
+
+    @Autowired
+    private StatisticRuleService statisticRuleService;
+
 
     @PostMapping
     public ResponseEntity<Rule> createRule(@RequestBody Rule rule) {
@@ -35,4 +41,9 @@ public class RuleRecommendationController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    @GetMapping("/stats")
+    public List<StatisticRule> getStats() {
+        List<StatisticRule> rules = statisticRuleService.getAllStat();
+        return new ResponseEntity<>(rules, HttpStatus.OK).getBody();
+    }
 }

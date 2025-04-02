@@ -20,7 +20,7 @@ CREATE TABLE query (
 -- changeset oss:3
 CREATE TABLE rule_stats (
     id BIGINT PRIMARY Key,
-    rule_id BIGINT references rule(product_id),
+    rule_id BIGINT references rule(id),
     count BIGINT DEFAULT 0
 )
 

@@ -26,7 +26,8 @@ public class DynamicRuleSet implements RecommendationRuleSet {
     }
 
     @Override
-    public Optional<Recommendation> perform(UUID userId) {
+    public Optional<Recommendation>
+    perform(UUID userId) {
         return repository.findAll().stream()
                 .flatMap(rule -> processRule(rule, userId).stream())
                 .findFirst();

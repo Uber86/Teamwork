@@ -27,26 +27,30 @@ public class Rule {
             fetch = FetchType.EAGER)
     private List<Query> queries;
 
-    @OneToMany
-    private StatisticRule statisticRule;
+    @OneToMany(mappedBy = "rule")
+    private List<StatisticRule> statisticRule;
 
-    public Rule(Long id, String productName, UUID productId, String productText, List<Query> queries) {
+    public Rule(long id, String productName,
+                UUID productId,
+                String productText,
+                List<Query> queries,
+                List<StatisticRule> statisticRule) {
         this.id = id;
         this.productName = productName;
         this.productId = productId;
         this.productText = productText;
         this.queries = queries;
+        this.statisticRule = statisticRule;
     }
-
 
     public Rule() {
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -82,18 +86,25 @@ public class Rule {
         this.queries = queries;
     }
 
+    public List<StatisticRule> getStatisticRule() {
+        return statisticRule;
+    }
+
+    public void setStatisticRule(List<StatisticRule> statisticRule) {
+        this.statisticRule = statisticRule;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rule rule = (Rule) o;
-        return Objects.equals(id, rule.id) && Objects.equals(productName, rule.productName) && Objects.equals(productId, rule.productId) && Objects.equals(productText, rule.productText) && Objects.equals(queries, rule.queries);
+        return id == rule.id && Objects.equals(productName, rule.productName) && Objects.equals(productId, rule.productId) && Objects.equals(productText, rule.productText) && Objects.equals(queries, rule.queries) && Objects.equals(statisticRule, rule.statisticRule);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, productName, productId, productText, queries);
+        return Objects.hash(id, productName, productId, productText, queries, statisticRule);
     }
 
     @Override
@@ -104,6 +115,7 @@ public class Rule {
                 ", productId=" + productId +
                 ", productText='" + productText + '\'' +
                 ", queries=" + queries +
+                ", statisticRule=" + statisticRule +
                 '}';
     }
 }

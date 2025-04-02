@@ -14,4 +14,6 @@ public interface RuleRepository extends JpaRepository<Rule, Long> {
     List<Rule> findAll();
 
     Rule findByProductId(UUID productId);
+
+
 }
