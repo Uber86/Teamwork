@@ -80,29 +80,4 @@ public class RecommendationRepository {
         String sql = "Select FIRST_NAME, LAST_NAME FROM USERS WHERE ID =?";
         return jdbcTemplate.queryForObject(sql, new Object[]{userId}, String.class);
     }
-
-    /*
-    /*
-    Метод для сравнения суммы транзакции определенного типа с константой
-     */
-//    public boolean transactionSumCompare(UUID userId, ProductType productType,
-//                                         TransactionType transactionType,
-//                                         ComparisonOperators operators, int sum
-//    ) {
-//        String sql = "Select SUM(amount) " +
-//                "From transactions t " +
-//                "LEFT JOIN products p ON p.id = t.product_id " +
-//                "WHERE t.user_id =? AND p.type =? AND t.type=?";
-//        Integer count = jdbcTemplate.queryForObject(sql, new Object[]{userId,
-//                productType.name(), transactionType.name()}, Integer.class);
-//        Boolean a = Boolean.valueOf(count + operators.toString() + sum);
-//        return a;
-//    }
-
-
-
-
-
-
-
 }

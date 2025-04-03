@@ -21,5 +21,4 @@ public class UserOf extends AbstractQuery{
     protected boolean internalPerform(UUID userId, RecommendationRepository repository) {
         return repository.isUserOf(userId, productType);
     }
-
 }

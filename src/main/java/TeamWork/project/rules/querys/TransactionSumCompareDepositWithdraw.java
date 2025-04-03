@@ -29,6 +29,4 @@ public class TransactionSumCompareDepositWithdraw extends AbstractQuery{
         int sumW = repository.sum(userId, productType, TransactionType.WITHDRAW);
         return comparisonType.comparison(sumD, sumW);
     }
-
-
 }

@@ -21,15 +21,17 @@ import static TeamWork.project.utils.CommandSupportUtils.chatId;
 import static TeamWork.project.utils.CommandSupportUtils.text;
 
 @Component
-public class RecommendCommand extends DynamicRuleSet implements TelegramCommand{
+public class RecommendCommand  implements TelegramCommand{
 
     private final Pattern pattern = Pattern.compile("^/recommend\\s+([\\w.]+)$");
 
     private final RecommendationRepository recommendationRepository;
 
-    public RecommendCommand(RuleRepository repository, RecommendationRepository recommendationRepository) {
-        super(repository, recommendationRepository);
+    private final RecommendationService recommendationService;
+
+    public RecommendCommand(RecommendationRepository recommendationRepository, RecommendationService recommendationService) {
         this.recommendationRepository = recommendationRepository;
+        this.recommendationService = recommendationService;
     }
 
 
@@ -40,14 +42,6 @@ public class RecommendCommand extends DynamicRuleSet implements TelegramCommand{
                 .map(it -> it.matches(pattern.pattern()))
                 .orElse(false);
     }
-
-//    @Override
-//    public SendMessage handle(Update update){
-//        String notificationTask = update.message().chat().username();
-//        String text = "recommend founded";
-//        String format = String.format(text, notificationTask);
-//        return new SendMessage(chatId(update), format);
-//    }
 
     @Override
     public SendMessage handle(Update update){
@@ -65,28 +59,9 @@ public class RecommendCommand extends DynamicRuleSet implements TelegramCommand{
         String text = "Здравствуйте, " +
                 recommendationRepository.getUserFirstAndLastName(userId) +
                 " !\n" +
-                "Ваши рекомендации: "+ perform(userId);
+                "Ваши рекомендации: "+ recommendationService.getRecommendation(userId);
         String format = String.format(text, notificationTask);
         return new SendMessage(chatId(update), format );
     }
 
-
-//    private UUID getUserId(String user){
-//        String sql = "Select ID " +
-//                "From USERS " +
-//                "WHERE USERNAME =?";
-//        return jdbcTemplate.queryForObject(sql, new Object[]{user}, UUID.class);
-//    }
-    //@Override
-    //public SendMessage handle(Update update) {
-    //    Optional<String> text = text(update);
-    //    if(text.isPresent()) {
-    //        Matcher matcher = pattern.matcher(text.get());
-    //        if(matcher.find()){
-    //            String user = matcher.group(1);
-    //            return new SendMessage(chatId(update), "Здравствуйте, " + user + " !\n");
-    //        }
-    //    }
-    //    return new SendMessage(chatId(update), "Ошибка");
-    //}
 }

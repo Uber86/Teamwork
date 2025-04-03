@@ -26,9 +26,6 @@ public class QueryFactory {
             default:
                 return null;
         }
-
     }
-
-
 }
 

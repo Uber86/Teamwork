@@ -13,11 +13,13 @@ public class CommandSupportUtils {
                 .map(command::equals)
                 .orElse(false);
     }
+
     public static Optional<String> text(Update update) {
         return Optional.of(update)
                 .map(Update::message)
                 .map(Message::text);
     }
+
     public static Long chatId(Update update) {
         return Optional.of(update)
                 .map(Update::message)
