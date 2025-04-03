@@ -71,3 +71,39 @@ SELECT ID FROM USERS WHERE USERNAME =? [42104-232]
 2025-04-02 09:11:45.127667+03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
 SELECT ID FROM USERS WHERE USERNAME =? [42104-232]
+2025-04-03 07:34:55.777863+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS WHERE USERNAME =? [42104-232]
+2025-04-03 08:37:02.333350+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS WHERE USERNAME =? [42104-232]
+2025-04-03 08:39:16.419747+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS WHERE USERNAME =? [42104-232]
+2025-04-03 08:56:52.131850+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS WHERE USERNAME =? [42104-232]
+2025-04-03 08:58:22.891431+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS WHERE USERNAME =? [42104-232]
+2025-04-03 08:58:51.183225+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS WHERE USERNAME =? [42104-232]
+2025-04-03 09:03:29.479418+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS WHERE USERNAME =? [42104-232]
+2025-04-03 10:12:44.903608+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS WHERE USERNAME =? [42104-232]
+2025-04-03 10:16:08.845028+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS WHERE USERNAME =? [42104-232]
+2025-04-03 10:17:10.726732+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS WHERE USERNAME =? [42104-232]
+2025-04-03 10:19:39.759171+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS WHERE USERNAME =? [42104-232]
+2025-04-03 10:41:37.430667+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT ID FROM USERS WHERE USERNAME =? [42104-232]

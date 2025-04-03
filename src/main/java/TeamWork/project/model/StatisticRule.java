@@ -13,6 +13,7 @@ public class StatisticRule {
     private long id;
 
     @ManyToOne
+    @JoinColumn(name = "id", nullable = false)
     private Rule rule;
 
     private Long count = 0L;

@@ -14,6 +14,9 @@ public class Recommendation {
         this.text = text;
     }
 
+    public Recommendation() {
+    }
+
     public UUID getId() {
         return id;
     }
