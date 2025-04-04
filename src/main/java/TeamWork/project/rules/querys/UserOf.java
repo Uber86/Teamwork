@@ -7,7 +7,10 @@ import TeamWork.project.repository.RecommendationRepository;
 import java.util.List;
 import java.util.UUID;
 
-
+/**
+ * Класс UserOf наследник AbstractQuery
+ * Рекомендация для пользователя user of
+ */
 public class UserOf extends AbstractQuery{
 
     private final ProductType productType;

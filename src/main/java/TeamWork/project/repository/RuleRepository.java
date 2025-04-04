@@ -7,7 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.UUID;
 
-
+/**
+ * Интерфейс-репозитории RuleRepository
+ * для работы с продуктами хранящихся в БД
+ */
 @Repository
 public interface RuleRepository extends JpaRepository<Rule, Long> {
 

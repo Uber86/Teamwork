@@ -9,7 +9,10 @@ import TeamWork.project.repository.RecommendationRepository;
 import java.util.List;
 import java.util.UUID;
 
-
+/**
+ * Класс TransactionSumCompareDepositWithdraw наследник AbstractQuery
+ * Рекомендация для пользователя transaction sum compare deposit withdraw
+ */
 public class TransactionSumCompareDepositWithdraw extends AbstractQuery{
 
     private final ProductType productType;

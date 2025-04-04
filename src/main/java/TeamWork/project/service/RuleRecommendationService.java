@@ -8,11 +8,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Класс-сервис RuleRecommendationService
+ * для работы с правилами
+ * добавление, удаление и получения правил
+ */
 @Service
 public class RuleRecommendationService {
 
     @Autowired
     private RuleRepository ruleRepository;
+
 
     public Rule addRule(Rule rule) {
         Rule save = ruleRepository.save(rule);

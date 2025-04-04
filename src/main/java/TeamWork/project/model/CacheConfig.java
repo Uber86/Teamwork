@@ -8,6 +8,11 @@ import org.springframework.context.annotation.Configuration;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Класс CacheConfig
+ * Кеширование ответов из базы знаний
+ * 3 метода для каждого метода
+ */
 @Configuration
 public class CacheConfig {
 

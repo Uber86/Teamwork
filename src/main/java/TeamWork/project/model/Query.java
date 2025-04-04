@@ -6,14 +6,18 @@ import jakarta.persistence.*;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Класс Query
+ * шаблон правил для продуктов
+ */
 @Entity
 @Table(name = "query")
 public class Query {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
 
     @Enumerated(EnumType.STRING)
     @Column(name = "query")
@@ -25,7 +29,12 @@ public class Query {
     @Column(name = "negate")
     private boolean negate;
 
+    /**
+     *Двусторонние отношения
+     * к продукту
+     */
     @ManyToOne
+    @JoinColumn(name ="rule_id")
     private Rule rule;
 
     public  Query() {}

@@ -19,7 +19,11 @@ import java.util.regex.Pattern;
 
 import static TeamWork.project.utils.CommandSupportUtils.chatId;
 import static TeamWork.project.utils.CommandSupportUtils.text;
-
+/**
+ * Класс RecommendCommand реализует интерфейс TelegramCommand и обрабатывает команду /recommend username
+ * username - пользователь банка (указывается при регистрации).
+ * Он выдает рекомендации подходящии тому или иному пользователю.
+ */
 @Component
 public class RecommendCommand  implements TelegramCommand{
 
@@ -34,7 +38,13 @@ public class RecommendCommand  implements TelegramCommand{
         this.recommendationService = recommendationService;
     }
 
-
+    /**
+     * Проверяет, поддерживает ли команда данный update.
+     *
+     * @param update объект Update, содержащий информацию о входящем сообщении
+     * @return true, если команда поддерживается
+     * (если команда равна /recommend username), иначе false
+     */
     @Override
     public boolean support(Update update) {
         Optional<String> text = text(update);
@@ -43,6 +53,13 @@ public class RecommendCommand  implements TelegramCommand{
                 .orElse(false);
     }
 
+    /**
+     * Метод выдает динамическое рекомендации.
+     * Обрабатывает команду /recommend username
+     *
+     * @param update объект Update, содержащий информацию о входящем сообщении
+     * @return объект SendMessage выдает динамическую рекомендацию
+     */
     @Override
     public SendMessage handle(Update update){
         Matcher matcher = pattern.matcher(update.message().text());

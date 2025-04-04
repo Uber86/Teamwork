@@ -5,7 +5,10 @@ import jakarta.persistence.*;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
-
+/**
+ * Класс Rule
+ * шаблон продукта
+ */
 @Entity
 @Table(name= "rule")
 public class Rule {
@@ -23,10 +26,18 @@ public class Rule {
     @Column(name = "product_text")
     private String productText;
 
+    /**
+     *Двусторонние отношения
+     * к правилам
+     */
     @OneToMany(mappedBy = "rule", cascade = CascadeType.ALL,orphanRemoval = true,
             fetch = FetchType.EAGER)
     private List<Query> queries;
 
+    /**
+     *Двусторонние отношения
+     * статическому счетчику
+     */
     @OneToMany(mappedBy = "rule")
     private List<StatisticRule> statisticRule;
 

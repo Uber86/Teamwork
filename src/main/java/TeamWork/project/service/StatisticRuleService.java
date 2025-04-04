@@ -10,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+/**
+ * Класс-сервис StatisticRuleService
+ * для работы со статическими счетчиками правил
+ */
 @Service
 public class StatisticRuleService {
 
@@ -22,6 +25,10 @@ public class StatisticRuleService {
     private RuleRepository ruleRepository;
 
 
+    /**
+     * Метод увеличивает статистику при каждом вызове правила
+     * @param ruleId идентификатор правила
+     */
     @Transactional
     public void incrementStatistic(Long ruleId) {
         Rule rule = ruleRepository.findAll().stream()
@@ -35,6 +42,11 @@ public class StatisticRuleService {
         statisticRuleRepository.save(stat);
     }
 
+    /**
+     * Метод для создания новой статистики
+     * @param rule правила
+     * @return возвращает новую статистику
+     */
     private StatisticRule createNewStatic(Rule rule) {
         StatisticRule stat = new StatisticRule();
         stat.setRule(rule);
@@ -42,6 +54,10 @@ public class StatisticRuleService {
         return stat;
     }
 
+    /**
+     * Метод для получения количества вызовов правил
+     * @return возвращает количество вызовов по каждому правилу
+     */
     public List<StatisticRule> getAllStat() {
         return statisticRuleRepository.findAll();
     }

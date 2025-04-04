@@ -1,5 +1,9 @@
 package TeamWork.project.dto;
 
+/**
+ * Класс Querys
+ * содержит константы
+ */
 public enum Querys {
     USER_OF,
     ACTIVE_USER_OF,

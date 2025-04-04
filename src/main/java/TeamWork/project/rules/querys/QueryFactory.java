@@ -6,12 +6,20 @@ import TeamWork.project.repository.RuleRepository;
 
 import java.util.Collections;
 
-
+/**
+ * Класс QueryFactory
+ * для работы вне пакета querys с методами абстрактных классов
+ */
 public class QueryFactory {
 
     private static RuleRepository ruleRepository;
 
 
+    /**
+     * Метод статический для динамического подбора рекомендации для пользователя
+     * @return возвращает подходящий для пользователя рекомендации
+     * иначе null если пользователь не подходит не под одно из рекомендации
+     */
     public static AbstractQuery from(Querys query, String arguments, boolean negate) {
         switch (query){
             case USER_OF:

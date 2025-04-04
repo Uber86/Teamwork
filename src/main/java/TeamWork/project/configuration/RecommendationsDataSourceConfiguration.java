@@ -11,6 +11,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
 
+/**
+ * Класс RecommendationsDataSourceConfiguration для настройки БД H2
+ * передаем url с application.properties
+ */
 @Configuration
 public class RecommendationsDataSourceConfiguration {
 

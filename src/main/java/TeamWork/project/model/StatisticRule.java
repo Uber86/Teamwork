@@ -2,8 +2,11 @@ package TeamWork.project.model;
 
 import jakarta.persistence.*;
 
-import java.util.UUID;
-
+/**
+ * Класс StatisticRule
+ * статический счетчик
+ * привязан к правилам по id
+ */
 @Entity
 @Table(name ="rule_stats")
 public class StatisticRule {
@@ -12,8 +15,12 @@ public class StatisticRule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    /**
+     *Двусторонние отношения
+     * id продукта
+     */
     @ManyToOne
-    @JoinColumn(name = "id", nullable = false)
+    @JoinColumn(name ="rule_id")
     private Rule rule;
 
     private Long count = 0L;

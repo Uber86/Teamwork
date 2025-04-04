@@ -9,7 +9,10 @@ import TeamWork.project.repository.RecommendationRepository;
 import java.util.List;
 import java.util.UUID;
 
-
+/**
+ * Класс TransactionSumCompare наследник AbstractQuery
+ * Рекомендация для пользователя transaction sum compare
+ */
 public class TransactionSumCompare extends AbstractQuery {
 
     private final ProductType productType;

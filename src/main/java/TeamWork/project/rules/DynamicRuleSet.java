@@ -14,6 +14,10 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * Класс DynamicRuleSet реализует RecommendationRuleSet
+ * Класс для динамических правил для пользователя банка
+ */
 @Component
 public class DynamicRuleSet implements RecommendationRuleSet {
 
@@ -25,6 +29,11 @@ public class DynamicRuleSet implements RecommendationRuleSet {
         this.recommendationRepository = recommendationRepository;
     }
 
+    /**
+     * Метод для выдачи рекомендации пользователю
+     * @param userId уникальный идентификатор user
+     * @return возвращает рекомендации
+     */
     @Override
     public Optional<Recommendation>
     perform(UUID userId) {
@@ -34,6 +43,13 @@ public class DynamicRuleSet implements RecommendationRuleSet {
     }
 
 
+    /**
+     * Метод проверки и выдачи динамических рекомендации
+     * @param rule продукт для пользователя
+     * @param userId уникальный идентификатор user
+     * @return true возвращает информацию по продукту
+     * false пустой список
+     */
     private Optional<Recommendation> processRule(Rule rule, UUID userId) {
         Boolean reduce = rule.getQueries().stream()
                 .map(query -> QueryFactory.from(query.getQuery(),

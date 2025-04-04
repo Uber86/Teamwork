@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Класс-сервис TelegramBotUpdatesListener
+ * отвечает за обработку входящих update
+ */
 @Service
 public class TelegramBotUpdatesListener implements UpdatesListener {
 
@@ -30,6 +34,11 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         telegramBot.setUpdatesListener(this);
     }
 
+    /**
+     *метод сравнивает входящии сообщения
+     * @param updates лист команд
+     * @return возвращает константу при успешной обработки (-1)
+     */
     @Override
     public int process(List<Update> updates) {
         updates.forEach(update -> {
@@ -49,6 +58,10 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
         return UpdatesListener.CONFIRMED_UPDATES_ALL;
     }
 
+    /**
+     * метод для отправки сообщения
+     * @param sendMessage
+     */
     private void sendMessage(SendMessage sendMessage) {
         try {
             telegramBot.execute(sendMessage);

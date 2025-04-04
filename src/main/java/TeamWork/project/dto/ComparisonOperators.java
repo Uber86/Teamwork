@@ -3,6 +3,11 @@ package TeamWork.project.dto;
 import java.util.Map;
 import java.util.function.BiPredicate;
 
+/**
+ * Класс ComparisonOperators относиться к dto
+ * создан для динамических правил
+ * реализация операторов сравнения
+ */
 public class ComparisonOperators {
     private static final Map<String, BiPredicate<Integer, Integer>> MAP = Map.of(
             ">",(w1,w2)->w1>w2,

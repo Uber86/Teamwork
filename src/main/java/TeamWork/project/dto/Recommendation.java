@@ -2,6 +2,10 @@ package TeamWork.project.dto;
 
 import java.util.UUID;
 
+/**
+ * Класс Recommendation
+ * шаблон рекомендации
+ */
 public class Recommendation {
     private UUID id;
     private String name;

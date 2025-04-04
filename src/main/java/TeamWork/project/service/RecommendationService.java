@@ -9,6 +9,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Класс-сервис RecommendationService
+ * работает с классами помеченных аннотацией @Component
+ */
 @Service
 public class RecommendationService {
 
@@ -19,6 +23,11 @@ public class RecommendationService {
         this.ruleSets = ruleSets;
     }
 
+    /**
+     * Метод для работы с рекомендациями
+     * @param userId уникальный идентификатор user
+     * @return возвращает подходящие рекомендации
+     */
     public List<Recommendation> getRecommendation(UUID userId){
         return ruleSets.stream()
                 .map(recommendationRuleSet -> recommendationRuleSet.perform(userId))

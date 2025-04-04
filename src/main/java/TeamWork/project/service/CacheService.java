@@ -5,6 +5,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+/**
+ * Класс-сервис CacheService
+ * для работы с кешами
+ */
 @Service
 public class CacheService {
 
@@ -14,6 +18,9 @@ public class CacheService {
         this.caches = caches;
     }
 
+    /**
+     * Метод очистки закешированных результатов
+     */
     public void clearAllCaches() {
 
         caches.values().forEach(Cache::invalidateAll);
