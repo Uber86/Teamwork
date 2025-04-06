@@ -92,7 +92,7 @@ public class RecommendationRepository {
      * @return уникальный идентификатор user
      */
     public UUID getUserId(String userName){
-        String sql = "SELECT id FROM users WHERE username =?";
+        String sql = "SELECT \"ID\" FROM \"USERS\" WHERE \"USERNAME\" =?";
         return jdbcTemplate.queryForObject(sql, new Object[]{userName}, UUID.class);
     }
 

@@ -128,3 +128,12 @@ SELECT id FROM users WHERE username =? [42104-232]
 2025-04-03 18:52:26.957068+03:00 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
 SELECT id FROM users WHERE username =? [42104-232]
+2025-04-06 20:25:59.185936+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT id FROM users WHERE username =? [42104-232]
+2025-04-06 20:41:22.668093+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT id FROM "USERS" WHERE "USERNAME" =? [42104-232]
+2025-04-06 20:42:39.480788+03:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found (this database is empty); SQL statement:
+SELECT "ID" FROM "USERS" WHERE "USERNAME" =? [42104-232]
