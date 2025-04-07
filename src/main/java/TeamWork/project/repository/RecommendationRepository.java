@@ -2,11 +2,15 @@ package TeamWork.project.repository;
 
 import TeamWork.project.dto.ProductType;
 import TeamWork.project.dto.TransactionType;
+import TeamWork.project.model.User;
 import com.github.benmanes.caffeine.cache.Cache;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.UUID;
 
 /**
@@ -35,7 +39,8 @@ public class RecommendationRepository {
 
     /**
      * Метод о подтверждении у user продукта
-     * @param userId уникальный идентификатор user
+     *
+     * @param userId      уникальный идентификатор user
      * @param productType продукт пользователя
      * @return true если у пользователя имеется продукт
      * false при отсутствии
@@ -52,8 +57,9 @@ public class RecommendationRepository {
 
     /**
      * Метод суммы транзакции у user
-     * @param userId уникальный идентификатор user
-     * @param productType продукт пользователя
+     *
+     * @param userId          уникальный идентификатор user
+     * @param productType     продукт пользователя
      * @param transactionType транзакции пользователя
      * @return сумма по транзакциям продукта
      */
@@ -71,7 +77,8 @@ public class RecommendationRepository {
 
     /**
      * Метод для сравнения количества транзакции по продуктам
-     * @param userId уникальный идентификатор user
+     *
+     * @param userId      уникальный идентификатор user
      * @param productType продукт пользователя
      * @return true количество продуктов у пользователя >5 иначе false
      */
@@ -88,21 +95,30 @@ public class RecommendationRepository {
 
     /**
      * Метод для получения уникального идентификатора user
+     *
      * @param userName username пользователя учетной записи
      * @return уникальный идентификатор user
      */
-    public UUID getUserId(String userName){
+    public UUID getUserId(String userName) {
         String sql = "SELECT \"ID\" FROM \"USERS\" WHERE \"USERNAME\" =?";
         return jdbcTemplate.queryForObject(sql, new Object[]{userName}, UUID.class);
     }
 
     /**
      * Метод для получения имени и фамилии пользователя
+     *
      * @param userId уникальный идентификатор user
      * @return имени и фамилии пользователя банка
      */
-    public String getUserFirstAndLastName(UUID userId) {
+    public User getUserFirstAndLastName(UUID userId) {
         String sql = "Select first_name, last_name FROM users WHERE id =?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{userId}, String.class);
+        return jdbcTemplate.queryForObject(sql, new Object[]{userId}, new RowMapper<User>() {
+            @Override
+            public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+                String firstName = rs.getString("first_name");
+                String lastName = rs.getString("last_name");
+                return new User(firstName, lastName);
+            }
+        });
     }
 }
