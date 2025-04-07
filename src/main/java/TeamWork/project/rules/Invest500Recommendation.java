@@ -11,6 +11,10 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 import java.util.UUID;
 
+/**
+ * Класс Invest500Recommendation реализует RecommendationRuleSet
+ * Класс для выдачи не динамических правил пользователю банка
+ */
 @Component
 public class Invest500Recommendation implements RecommendationRuleSet {
 
@@ -33,6 +37,12 @@ public class Invest500Recommendation implements RecommendationRuleSet {
         this.repository = recommendationRepository;
     }
 
+    /**
+     * Метод проверки и выдачи рекомендации
+     * @param userId уникальный идентификатор user
+     * @return true если пользователь подходит под правила-выдает рекомендацию
+     * false - пустой список
+     */
     @Override
     public Optional<Recommendation> perform(UUID userId) {
         Boolean userOf = repository.isUserOf(userId, ProductType.DEBIT)&&

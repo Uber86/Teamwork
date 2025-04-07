@@ -11,7 +11,10 @@ import org.springframework.stereotype.Component;
 import java.util.Optional;
 import java.util.UUID;
 
-
+/**
+ * Класс SimpleLoanRecommendation реализует RecommendationRuleSet
+ * Класс для выдачи не динамических правил пользователю банка
+ */
 @Component
 public class SimpleLoanRecommendation implements RecommendationRuleSet{
 
@@ -47,7 +50,12 @@ public class SimpleLoanRecommendation implements RecommendationRuleSet{
         this.repository = repository;
     }
 
-
+    /**
+     * Метод проверки и выдачи рекомендации
+     * @param userId уникальный идентификатор user
+     * @return true если пользователь подходит под правила-выдает рекомендацию
+     * false - пустой список
+     */
     @Override
     public Optional<Recommendation> perform(UUID userId) {
         Boolean userOf = !repository.isUserOf(userId, ProductType.CREDIT)&&
